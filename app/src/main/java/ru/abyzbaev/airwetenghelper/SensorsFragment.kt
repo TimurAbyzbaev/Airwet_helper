@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import ru.abyzbaev.airwetenghelper.databinding.SensorsFragmentBinding
 
@@ -72,12 +73,11 @@ class SensorsFragment: Fragment() {
         }
     }
 
-
     fun calculateNumber(sensorMap: MutableMap<Int, Int>, firstGroup: Boolean) {
         // Создаем пустое двоичное число
         var binaryNumber = 0
         var offsetNumber = 1
-        if(!firstGroup){
+        if (!firstGroup) {
             offsetNumber = 6
         }
 
@@ -86,23 +86,57 @@ class SensorsFragment: Fragment() {
             // Вычисляем смещение для каждой зоны
             val offset = (zone - offsetNumber) * 3
 
+            // Определяем первый адрес датчика в текущей зоне
+            val firstAddress = 2 + (zone - 1) * 3
+
             // Выставляем соответствующие биты в зависимости от количества датчиков
             when (sensorCount) {
-                0 -> { // Если в зоне нет датчиков
-                    // Выставляем биты в нули
+                0 -> {
+                    // Если в зоне нет датчиков
                     binaryNumber = binaryNumber or (0 shl offset)
+                    for (i in 0..2) {
+                        val unusedTextViewId = resources.getIdentifier("tv${firstAddress + i}", "id", requireContext().packageName)
+                        val unusedTextView = requireView().findViewById<TextView>(unusedTextViewId)
+                        unusedTextView.visibility = View.INVISIBLE
+                    }
                 }
-                1 -> { // Если в зоне один датчик
-                    // Выставляем первый бит в единицу, а остальные в нули
+                1 -> {
+                    // Если в зоне один датчик
                     binaryNumber = binaryNumber or (1 shl offset)
+                    // Включаем видимость первого датчика в зоне
+                    val textViewId = resources.getIdentifier("tv$firstAddress", "id", requireContext().packageName)
+                    val textView = requireView().findViewById<TextView>(textViewId)
+                    textView.visibility = View.VISIBLE
+                    // Скрываем остальные адреса
+                    for (i in 1..2) {
+                        val unusedTextViewId = resources.getIdentifier("tv${firstAddress + i}", "id", requireContext().packageName)
+                        val unusedTextView = requireView().findViewById<TextView>(unusedTextViewId)
+                        unusedTextView.visibility = View.INVISIBLE
+                    }
                 }
-                2 -> { // Если в зоне два датчика
-                    // Выставляем первые два бита в единицы, а третий в ноль
+                2 -> {
+                    // Если в зоне два датчика
                     binaryNumber = binaryNumber or (3 shl offset)
+                    // Включаем видимость первых двух датчиков в зоне
+                    for (i in 0 until 2) {
+                        val textViewId = resources.getIdentifier("tv${firstAddress + i}", "id", requireContext().packageName)
+                        val textView = requireView().findViewById<TextView>(textViewId)
+                        textView.visibility = View.VISIBLE
+                    }
+                    // Скрываем оставшийся адрес
+                    val unusedTextViewId = resources.getIdentifier("tv${firstAddress + 2}", "id", requireContext().packageName)
+                    val unusedTextView = requireView().findViewById<TextView>(unusedTextViewId)
+                    unusedTextView.visibility = View.INVISIBLE
                 }
-                3 -> { // Если в зоне три датчика
-                    // Выставляем все три бита в единицы
+                3 -> {
+                    // Если в зоне три датчика
                     binaryNumber = binaryNumber or (7 shl offset)
+                    // Включаем видимость всех датчиков в зоне
+                    for (i in 0 until 3) {
+                        val textViewId = resources.getIdentifier("tv${firstAddress + i}", "id", requireContext().packageName)
+                        val textView = requireView().findViewById<TextView>(textViewId)
+                        textView.visibility = View.VISIBLE
+                    }
                 }
             }
         }
@@ -113,4 +147,109 @@ class SensorsFragment: Fragment() {
             binding.textView610Parameter.text = binaryNumber.toString(10)
         }
     }
+
+
+
+//    fun calculateNumber(sensorMap: MutableMap<Int, Int>, firstGroup: Boolean) {
+//        // Создаем пустое двоичное число
+//        var binaryNumber = 0
+//        var offsetNumber = 1
+//        if (!firstGroup) {
+//            offsetNumber = 6
+//        }
+//
+//        // Проходим по всем зонам в sensorMap
+//        for ((zone, sensorCount) in sensorMap) {
+//            // Вычисляем смещение для каждой зоны
+//            val offset = (zone - offsetNumber) * 3
+//
+//            // Определяем первый адрес датчика в текущей зоне
+//            val firstAddress = 2 + (zone - 1) * 3
+//
+//            // Выставляем соответствующие биты в зависимости от количества датчиков
+//            when (sensorCount) {
+//                0 -> {
+//                    // Если в зоне нет датчиков
+//                    binaryNumber = binaryNumber or (0 shl offset)
+//                }
+//                1 -> {
+//                    // Если в зоне один датчик
+//                    binaryNumber = binaryNumber or (1 shl offset)
+//                    // Включаем видимость первого датчика в зоне
+//                    val textViewId = resources.getIdentifier("tv$firstAddress", "id", requireContext().packageName)
+//                    val textView = requireView().findViewById<TextView>(textViewId)
+//                    textView.visibility = View.VISIBLE
+//                }
+//                2 -> {
+//                    // Если в зоне два датчика
+//                    binaryNumber = binaryNumber or (3 shl offset)
+//                    // Включаем видимость первых двух датчиков в зоне
+//                    for (i in 0 until 2) {
+//                        val textViewId = resources.getIdentifier("tv${firstAddress + i}", "id", requireContext().packageName)
+//                        val textView = requireView().findViewById<TextView>(textViewId)
+//                        textView.visibility = View.VISIBLE
+//                    }
+//                }
+//                3 -> {
+//                    // Если в зоне три датчика
+//                    binaryNumber = binaryNumber or (7 shl offset)
+//                    // Включаем видимость всех датчиков в зоне
+//                    for (i in 0 until 3) {
+//                        val textViewId = resources.getIdentifier("tv${firstAddress + i}", "id", requireContext().packageName)
+//                        val textView = requireView().findViewById<TextView>(textViewId)
+//                        textView.visibility = View.VISIBLE
+//                    }
+//                }
+//            }
+//        }
+//
+//        if(firstGroup) {
+//            binding.textView15Parameter.text = binaryNumber.toString(10)
+//        } else {
+//            binding.textView610Parameter.text = binaryNumber.toString(10)
+//        }
+//    }
+
+
+
+//    fun calculateNumber(sensorMap: MutableMap<Int, Int>, firstGroup: Boolean) {
+//        // Создаем пустое двоичное число
+//        var binaryNumber = 0
+//        var offsetNumber = 1
+//        if(!firstGroup){
+//            offsetNumber = 6
+//        }
+//
+//        // Проходим по всем зонам в sensorMap
+//        for ((zone, sensorCount) in sensorMap) {
+//            // Вычисляем смещение для каждой зоны
+//            val offset = (zone - offsetNumber) * 3
+//
+//            // Выставляем соответствующие биты в зависимости от количества датчиков
+//            when (sensorCount) {
+//                0 -> { // Если в зоне нет датчиков
+//                    // Выставляем биты в нули
+//                    binaryNumber = binaryNumber or (0 shl offset)
+//                }
+//                1 -> { // Если в зоне один датчик
+//                    // Выставляем первый бит в единицу, а остальные в нули
+//                    binaryNumber = binaryNumber or (1 shl offset)
+//                }
+//                2 -> { // Если в зоне два датчика
+//                    // Выставляем первые два бита в единицы, а третий в ноль
+//                    binaryNumber = binaryNumber or (3 shl offset)
+//                }
+//                3 -> { // Если в зоне три датчика
+//                    // Выставляем все три бита в единицы
+//                    binaryNumber = binaryNumber or (7 shl offset)
+//                }
+//            }
+//        }
+//
+//        if(firstGroup) {
+//            binding.textView15Parameter.text = binaryNumber.toString(10)
+//        } else {
+//            binding.textView610Parameter.text = binaryNumber.toString(10)
+//        }
+//    }
 }

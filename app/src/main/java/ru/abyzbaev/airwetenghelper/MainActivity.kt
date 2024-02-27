@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        replaceFragment(SensorsFragment())
     }
 
     private fun replaceFragment(fragment: Fragment) {
