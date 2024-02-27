@@ -142,9 +142,9 @@ class SensorsFragment: Fragment() {
         }
 
         if(firstGroup) {
-            binding.textView15Parameter.text = binaryNumber.toString(10)
+            binding.textView15Parameter.text = "Параметр 1-5:      ${binaryNumber.toString(10)}"
         } else {
-            binding.textView610Parameter.text = binaryNumber.toString(10)
+            binding.textView610Parameter.text = "Параметр 6-9:      ${binaryNumber.toString(10)}"
         }
     }
 
