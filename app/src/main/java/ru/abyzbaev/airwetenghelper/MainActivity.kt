@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_dashboard -> {
-                    replaceFragment(DescriptionsFragment())
+                    replaceFragment(PdfListFragment())
                     true
                 }
                 else -> false
