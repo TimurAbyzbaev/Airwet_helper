@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="numbers"/>
+        <item name="count1" type="integer">1</item>
+        <item name="count2" type="integer">2</item>
+        <item name="count3" type="integer">3</item>
+</resources>
