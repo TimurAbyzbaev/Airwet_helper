@@ -11,7 +11,17 @@ import androidx.fragment.app.Fragment
 class PdfListFragment : Fragment() {
 
     private lateinit var pdfListView: ListView
-    private val pdfFiles = arrayOf("Ошибки.pdf", "Параметры.pdf", "Полное руководство.pdf") // Ваши PDF файлы в папке assets
+    private val pdfFiles = arrayOf(
+        "Ошибки.pdf",
+        "Параметры.pdf",
+        "Полное руководство.pdf",
+        "Инструкция Airwet Touch C.pdf",
+        "Инструкция HC60.pdf",
+        "Настройка датчиков Airwet Sens.pdf",
+        "Подключение драйверов.pdf",
+        "Справка по подключению системы отопления к термогигростату Airwet Touch C.pdf",
+        "Шпаргалка по монтажу датчиков.pdf"
+    ) // PDF файлы в папке assets
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
