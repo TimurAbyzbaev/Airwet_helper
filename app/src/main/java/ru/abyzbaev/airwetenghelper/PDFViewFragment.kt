@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.barteksc.pdfviewer.PDFView
-import ru.abyzbaev.airwetenghelper.databinding.DescriptonsFragmentBinding
+import ru.abyzbaev.airwetenghelper.databinding.PdfviewFragmentBinding
 
-class DescriptionsFragment: Fragment() {
-    private var _binding: DescriptonsFragmentBinding? = null
+class PDFViewFragment: Fragment() {
+    private var _binding: PdfviewFragmentBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var pdfView: PDFView
@@ -28,7 +28,7 @@ class DescriptionsFragment: Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = DescriptonsFragmentBinding.inflate(layoutInflater)
+        _binding = PdfviewFragmentBinding.inflate(layoutInflater)
         val view = binding.root
         pdfView = binding.pdfView
         displayPdf()
@@ -38,8 +38,8 @@ class DescriptionsFragment: Fragment() {
     companion object {
         private const val ARG_PDF_FILE_NAME = "pdfFileName"
 
-        fun newInstance(pdfFileName: String): DescriptionsFragment {
-            val fragment = DescriptionsFragment()
+        fun newInstance(pdfFileName: String): PDFViewFragment {
+            val fragment = PDFViewFragment()
             val args = Bundle()
             args.putString(ARG_PDF_FILE_NAME, pdfFileName)
             fragment.arguments = args

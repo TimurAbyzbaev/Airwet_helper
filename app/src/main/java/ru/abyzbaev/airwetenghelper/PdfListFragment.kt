@@ -33,7 +33,7 @@ class PdfListFragment : Fragment() {
         pdfListView.adapter = adapter
         pdfListView.setOnItemClickListener { _, _, position, _ ->
             val selectedPdf = pdfFiles[position]
-            val pdfViewFragment = DescriptionsFragment.newInstance(selectedPdf)
+            val pdfViewFragment = PDFViewFragment.newInstance(selectedPdf)
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.container, pdfViewFragment)
                 .addToBackStack(null)
