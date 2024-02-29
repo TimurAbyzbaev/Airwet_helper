@@ -1,9 +1,6 @@
 package ru.abyzbaev.airwetenghelper
 
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.abyzbaev.airwetenghelper.databinding.ActivityMainBinding
