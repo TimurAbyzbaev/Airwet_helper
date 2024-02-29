@@ -1,4 +1,4 @@
-package ru.abyzbaev.airwetenghelper
+package ru.abyzbaev.airwetenghelper.view.pdffiles
 
 import android.os.Bundle
 import android.view.LayoutInflater

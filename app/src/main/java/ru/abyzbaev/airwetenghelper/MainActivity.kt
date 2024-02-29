@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.abyzbaev.airwetenghelper.databinding.ActivityMainBinding
+import ru.abyzbaev.airwetenghelper.view.pdffiles.PdfListFragment
+import ru.abyzbaev.airwetenghelper.view.sensors.SensorsFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

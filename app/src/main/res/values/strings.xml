@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">Airwet helper</string>
-    <string name="_1_5">Зоны 1-5</string>
+    <string name="_1_5">Зоны 1–5</string>
     <string name="_1">1</string>
     <string name="_2">2</string>
     <string name="_3">3</string>
     <string name="_4">4</string>
     <string name="_5">5</string>
-    <string name="_6_10">Зоны 6-10</string>
+    <string name="_6_10">Зоны 6–10</string>
     <string name="_6">6</string>
     <string name="Sensors">Датчики</string>
     <string name="Descriptions">Описания</string>
+    <string name="Parameter1_5">Параметр 1–5:%s</string>
+    <string name="Parameter6_10">Параметр 6–9:%s</string>
 </resources>
