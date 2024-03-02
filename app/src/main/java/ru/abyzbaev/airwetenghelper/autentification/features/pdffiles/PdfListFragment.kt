@@ -7,11 +7,16 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import ru.abyzbaev.airwetenghelper.R
+import ru.abyzbaev.airwetenghelper.databinding.PdfListFragmentBinding
+import ru.abyzbaev.airwetenghelper.databinding.SensorsFragmentBinding
 
 class PdfListFragment : Fragment() {
 
-    private lateinit var pdfListView: ListView
+    private var _binding: PdfListFragmentBinding? = null
+    private val binding get() = _binding!!
+
     private val pdfFiles = arrayOf(
         "Ошибки.pdf",
         "Параметры.pdf",
@@ -27,19 +32,34 @@ class PdfListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.pdf_list_fragment, container, false)
-        pdfListView = view.findViewById(R.id.listViewPdfFiles)
+    ): View {
+        _binding = PdfListFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, pdfFiles)
-        pdfListView.adapter = adapter
-        pdfListView.setOnItemClickListener { _, _, position, _ ->
+        binding.listViewPdfFiles.adapter = adapter
+        binding.listViewPdfFiles.setOnItemClickListener { _, _, position, _ ->
             val selectedPdf = pdfFiles[position]
-            val pdfViewFragment = PDFViewFragment.newInstance(selectedPdf)
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .replace(R.id.container, pdfViewFragment)
-//                .addToBackStack(null)
-//                .commit()
+            val action = PdfListFragmentDirections.actionPdfListFragmentToPdfViewFragment(selectedPdf)
+
+            findNavController().navigate(action)
         }
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.navigation_home -> {
+                    findNavController().navigate(R.id.action_list_pdf_to_home)
+                    true
+                }
+                R.id.navigation_pdf_list -> {
+                    true
+                }
+                else -> false
+            }
+        }
     }
 }

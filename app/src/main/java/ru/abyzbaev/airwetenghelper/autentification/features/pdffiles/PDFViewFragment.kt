@@ -15,11 +15,6 @@ class PDFViewFragment: Fragment() {
     private lateinit var pdfView: PDFView
     private var pdfFileName: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        pdfFileName = arguments?.getString(ARG_PDF_FILE_NAME)
-    }
-
     private fun displayPdf() {
         pdfFileName?.let {
             pdfView.fromAsset(it)
@@ -30,20 +25,16 @@ class PDFViewFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = PdfviewFragmentBinding.inflate(layoutInflater)
         val view = binding.root
-        pdfView = binding.pdfView
-        displayPdf()
-        return view
-    }
 
-    companion object {
-        private const val ARG_PDF_FILE_NAME = "pdfFileName"
-
-        fun newInstance(pdfFileName: String): PDFViewFragment {
-            val fragment = PDFViewFragment()
-            val args = Bundle()
-            args.putString(ARG_PDF_FILE_NAME, pdfFileName)
-            fragment.arguments = args
-            return fragment
+        arguments?.let {
+            pdfFileName = it.getString("PDFFile", "")
+            if(pdfFileName == "") {
+                throw IllegalStateException("No file name 0_0")
+            } else {
+                pdfView = binding.pdfView
+                displayPdf()
+            }
         }
+        return view
     }
 }

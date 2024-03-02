@@ -1,38 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/nav_graph.xml"
-app:startDestination="@id/authorizationFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/authorizationFragment">
 
-<fragment
-    android:id="@+id/authorizationFragment"
-    android:name="ru.abyzbaev.airwetenghelper.autentification.features.authorization.AuthorizationFragment"
-    android:label="fragment_authorization"
-    tools:layout="@layout/authorization_fragment" >
-    <action
-        android:id="@+id/action_authorizationFragment_to_registrationFragment"
-        app:destination="@id/registrationFragment" />
-    <action
-        app:popUpTo="@id/authorizationFragment"
-        app:popUpToInclusive="true"
-        android:id="@+id/action_authorizationFragment_to_homeFragment"
-        app:destination="@id/homeFragment" />
-</fragment>
-<fragment
-    android:id="@+id/registrationFragment"
-    android:name="ru.abyzbaev.airwetenghelper.autentification.features.registration.RegistrationFragment"
-    android:label="fragment_registration"
-    tools:layout="@layout/registration_fragment" >
-    <action
-        app:popUpTo="@id/authorizationFragment"
-        app:popUpToInclusive="true"
-        android:id="@+id/action_registrationFragment_to_homeFragment"
-        app:destination="@id/homeFragment" />
-</fragment>
-<fragment
-    android:id="@+id/homeFragment"
-    android:name="ru.abyzbaev.airwetenghelper.autentification.features.home.SensorsFragment"
-    tools:layout="@layout/sensors_fragment"
-    android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="ru.abyzbaev.airwetenghelper.autentification.features.authorization.AuthorizationFragment"
+        android:label="fragment_authorization"
+        tools:layout="@layout/authorization_fragment">
+        <action
+            android:id="@+id/action_authorizationFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_authorizationFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/authorizationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="ru.abyzbaev.airwetenghelper.autentification.features.registration.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/registration_fragment">
+        <action
+            android:id="@+id/action_registrationFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/authorizationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ru.abyzbaev.airwetenghelper.autentification.features.home.SensorsFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/sensors_fragment" >
+        <action
+            android:id="@+id/action_home_to_pdf_list_fragment"
+            app:destination="@+id/pdfListFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/pdfListFragment"
+        android:name="ru.abyzbaev.airwetenghelper.autentification.features.pdffiles.PdfListFragment"
+        android:label="fragment_pdf_list"
+        tools:layout="@layout/pdf_list_fragment">
+        <action
+            android:id="@+id/action_pdf_list_fragment_to_pdf_view_fragment"
+            app:destination="@+id/pdfView">
+            <argument
+                android:name="PDFFile"
+                app:argType="string"/>
+        </action>
+        <action
+            android:id="@+id/action_list_pdf_to_home"
+            app:destination="@+id/homeFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/pdfView"
+        android:name="ru.abyzbaev.airwetenghelper.autentification.features.pdffiles.PDFViewFragment"
+        android:label="PDFView"
+        tools:layout="@layout/pdfview_fragment">
+        <argument
+            android:name="PDFFile"
+            app:argType="string"
+            android:defaultValue='' />
+    </fragment>
+
 </navigation>
+

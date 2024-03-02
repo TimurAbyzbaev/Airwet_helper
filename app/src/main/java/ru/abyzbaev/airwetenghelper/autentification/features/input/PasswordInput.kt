@@ -19,6 +19,7 @@ class PasswordInput @JvmOverloads constructor(
     companion object {
 
         private const val PASSWORD_PATTERN =
-            "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}\$"
+            //"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}\$"
+            "^.{8,}\$"
     }
 }

@@ -11,6 +11,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import ru.abyzbaev.airwetenghelper.R
 import ru.abyzbaev.airwetenghelper.databinding.SensorsFragmentBinding
 
@@ -41,6 +42,19 @@ class SensorsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.navigation_home -> {
+                    true
+                }
+                R.id.navigation_pdf_list -> {
+                    findNavController().navigate(R.id.action_home_to_pdf_list_fragment)
+                    true
+                }
+                else -> false
+            }
+        }
 
         observeViewModel()
         initView()

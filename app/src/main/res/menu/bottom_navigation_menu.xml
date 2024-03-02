@@ -5,7 +5,7 @@
         android:title="@string/Sensors"
         android:icon="@drawable/baseline_settings_24" />
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_pdf_list"
         android:title="@string/Descriptions"
         android:icon="@drawable/baseline_density_small_24" />
 </menu>
