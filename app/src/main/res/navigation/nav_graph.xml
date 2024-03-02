@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/nav_graph.xml"
+app:startDestination="@id/authorizationFragment">
+
+<fragment
+    android:id="@+id/authorizationFragment"
+    android:name="ru.abyzbaev.airwetenghelper.autentification.features.authorization.AuthorizationFragment"
+    android:label="fragment_authorization"
+    tools:layout="@layout/authorization_fragment" >
+    <action
+        android:id="@+id/action_authorizationFragment_to_registrationFragment"
+        app:destination="@id/registrationFragment" />
+    <action
+        app:popUpTo="@id/authorizationFragment"
+        app:popUpToInclusive="true"
+        android:id="@+id/action_authorizationFragment_to_homeFragment"
+        app:destination="@id/homeFragment" />
+</fragment>
+<fragment
+    android:id="@+id/registrationFragment"
+    android:name="ru.abyzbaev.airwetenghelper.autentification.features.registration.RegistrationFragment"
+    android:label="fragment_registration"
+    tools:layout="@layout/registration_fragment" >
+    <action
+        app:popUpTo="@id/authorizationFragment"
+        app:popUpToInclusive="true"
+        android:id="@+id/action_registrationFragment_to_homeFragment"
+        app:destination="@id/homeFragment" />
+</fragment>
+<fragment
+    android:id="@+id/homeFragment"
+    android:name="ru.abyzbaev.airwetenghelper.autentification.features.home.SensorsFragment"
+    tools:layout="@layout/sensors_fragment"
+    android:label="HomeFragment" />
+</navigation>

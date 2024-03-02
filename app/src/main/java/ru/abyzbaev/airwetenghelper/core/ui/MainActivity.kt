@@ -1,12 +1,15 @@
-package ru.abyzbaev.airwetenghelper
+package ru.abyzbaev.airwetenghelper.core.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
+import ru.abyzbaev.airwetenghelper.R
 import ru.abyzbaev.airwetenghelper.databinding.ActivityMainBinding
-import ru.abyzbaev.airwetenghelper.view.pdffiles.PdfListFragment
-import ru.abyzbaev.airwetenghelper.view.sensors.SensorsFragment
+import ru.abyzbaev.airwetenghelper.autentification.features.pdffiles.PdfListFragment
+import ru.abyzbaev.airwetenghelper.autentification.features.home.SensorsFragment
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
@@ -33,8 +36,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, fragment)
-            .commit()
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.container, fragment)
+//            .commit()
     }
 }

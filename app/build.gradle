@@ -1,6 +1,19 @@
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        def nav_version = "2.7.7"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+    }
+}
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -35,22 +48,43 @@ android {
     }
 }
 
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
+    generateStubs = true
+}
+
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+
     implementation 'androidx.fragment:fragment-ktx:1.6.2'
-    
     implementation 'androidx.activity:activity-ktx:1.8.2'
 
+    //PDF
     implementation 'com.github.mhiew:android-pdf-viewer:3.2.0-beta.3'
 
+    // Hilt
+    implementation "com.google.dagger:hilt-android:2.51"
+    kapt "com.google.dagger:hilt-compiler:2.51"
+
+    // Navigation Components
+    def nav_version = "2.7.7"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Lifecycle
+    def lifecycleVersion = "2.7.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
 
 
 }

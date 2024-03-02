@@ -12,4 +12,12 @@
     <string name="Descriptions">Описания</string>
     <string name="Parameter1_5">Параметр 1–5:%s</string>
     <string name="Parameter6_10">Параметр 6–9:%s</string>
+    <string name="login_error">Login error</string>
+    <string name="password_error">password error</string>
+    <string name="password_error_same">password is different</string>
+    <string name="email">email</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="password">password</string>
+    <string name="check_password">check password</string>
 </resources>

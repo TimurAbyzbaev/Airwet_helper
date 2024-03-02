@@ -1,4 +1,4 @@
-package ru.abyzbaev.airwetenghelper.view.pdffiles
+package ru.abyzbaev.airwetenghelper.autentification.features.pdffiles
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,10 +35,10 @@ class PdfListFragment : Fragment() {
         pdfListView.setOnItemClickListener { _, _, position, _ ->
             val selectedPdf = pdfFiles[position]
             val pdfViewFragment = PDFViewFragment.newInstance(selectedPdf)
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container, pdfViewFragment)
-                .addToBackStack(null)
-                .commit()
+//            requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.container, pdfViewFragment)
+//                .addToBackStack(null)
+//                .commit()
         }
         return view
     }

@@ -1,4 +1,4 @@
-package ru.abyzbaev.airwetenghelper.view.sensors
+package ru.abyzbaev.airwetenghelper.autentification.features.home
 
 // SensorViewModel.kt
 import androidx.lifecycle.LiveData

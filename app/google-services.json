@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "449158326910",
+    "project_id": "airwet-helper",
+    "storage_bucket": "airwet-helper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449158326910:android:4bca2878f922f8840c062f",
+        "android_client_info": {
+          "package_name": "ru.abyzbaev.airwetenghelper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqRu65_ZWOVG7fbZq9yu9YBBglVdt64Eo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
