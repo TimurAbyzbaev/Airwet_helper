@@ -21,9 +21,20 @@ class AuthorizationFragment : BaseFragment<AuthorizationFragmentBinding>() {
         }
 
     private val viewModel: AuthorizationViewModel by viewModels()
+    private lateinit var preferenceManager: PreferenceManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        preferenceManager = PreferenceManager(requireContext())
+
+        val savedEmail = preferenceManager.email
+        val savedPassword = preferenceManager.password
+
+        if (!savedEmail.isNullOrEmpty() && !savedPassword.isNullOrEmpty()) {
+            viewModel.sendCredentials(savedEmail,savedPassword)
+        }
+
 
         val inputList = listOf(
             binding.authMail,
@@ -53,6 +64,10 @@ class AuthorizationFragment : BaseFragment<AuthorizationFragmentBinding>() {
                     email = binding.authMail.text(),
                     password = binding.authPassword.text()
                 )
+
+                // Сохраняем данные пользователя при успешной аутентификации
+                preferenceManager.email = binding.authMail.text()
+                preferenceManager.password = binding.authPassword.text()
             }
         }
         binding.navigateToSignUp.setOnClickListener {

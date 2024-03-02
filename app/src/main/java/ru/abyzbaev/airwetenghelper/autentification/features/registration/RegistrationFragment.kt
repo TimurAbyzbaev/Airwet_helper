@@ -10,11 +10,13 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.abyzbaev.airwetenghelper.R
 import ru.abyzbaev.airwetenghelper.autentification.data.AuthResult
+import ru.abyzbaev.airwetenghelper.autentification.features.authorization.PreferenceManager
 import ru.abyzbaev.airwetenghelper.core.ui.BaseFragment
 import ru.abyzbaev.airwetenghelper.databinding.RegistrationFragmentBinding
 
 @AndroidEntryPoint
 class RegistrationFragment : BaseFragment<RegistrationFragmentBinding>() {
+    private lateinit var preferenceManager: PreferenceManager
     override val bindingInflater: (LayoutInflater, ViewGroup?) -> RegistrationFragmentBinding =
         { inflater, container ->
             RegistrationFragmentBinding.inflate(inflater, container, false)
@@ -24,6 +26,7 @@ class RegistrationFragment : BaseFragment<RegistrationFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        preferenceManager = PreferenceManager(requireContext())
 
         val inputList = listOf(
             binding.signUpEmail,
@@ -53,6 +56,8 @@ class RegistrationFragment : BaseFragment<RegistrationFragmentBinding>() {
                     password = binding.signUpPasswordLayout.text()
                 )
             }
+            preferenceManager.email = binding.signUpEmail.text()
+            preferenceManager.password = binding.signUpPasswordLayout.text()
         }
     }
 }
